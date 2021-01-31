@@ -1,4 +1,5 @@
 ﻿using System;
+using MenssagerBrokers;
 
 namespace SendEmailService
 {
@@ -6,7 +7,7 @@ namespace SendEmailService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Consumer.ListenCommunication();
         }
     }
 }
