@@ -5,6 +5,7 @@ using Domain.Models.SendEntities;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Sevices;
 
 namespace MenssagerBrokers
 {
@@ -36,8 +37,8 @@ namespace MenssagerBrokers
                     {
                         var body = ea.Body.ToArray();
                         var message = Encoding.UTF8.GetString(body);
-                        var alarm = JsonConvert.DeserializeObject<SenderEntity>(message);
-                        Console.WriteLine($"{alarm.UserName}");
+                        var entity = JsonConvert.DeserializeObject<SenderEntity>(message);
+                        PostEmail.SendEmail(entity);
                         channel.BasicAck(ea.DeliveryTag, false);
                     }
                     catch (System.Exception)
