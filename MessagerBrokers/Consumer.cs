@@ -52,8 +52,6 @@ namespace MenssagerBrokers
                 channel.BasicConsume(queue: queueName,
                                      autoAck: false,
                                      consumer: consumer);
-
-                Console.WriteLine(" Press [enter] to exit.");
                 Console.ReadLine();
             }
         }
