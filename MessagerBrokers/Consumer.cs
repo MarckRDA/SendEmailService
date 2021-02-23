@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using System.Text.Json;
 using Domain.Models.SendEntities;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -11,14 +10,15 @@ namespace MenssagerBrokers
 {
     public class Consumer
     {
+        private static readonly string _urlConection = "amqps://snyrhojh:oDLO59ZkdvrV1GUxBmxflwGiuZeK9zL7@eagle.rmq.cloudamqp.com/snyrhojh";
         public static void ListenCommunication()
         {
+            
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost",
-                UserName = "achebarato",
-                Password = "getout1123"
+                Uri = new Uri(_urlConection)
             };
+
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
